@@ -1,0 +1,87 @@
+const jobs = [
+  {
+    id: 1,
+    date: "20 May, 2023",
+    company: "Amazon",
+    title: "Senior UI/UX Designer",
+    logo: "a",
+    logoType: "amazon",
+    salary: "$250/hr",
+    location: "San Francisco, CA",
+    tags: ["Part time", "Senior level", "Distant", "Project work"],
+    bg: "peach",
+  },
+
+  {
+    id: 2,
+    date: "4 Feb, 2023",
+    company: "Google",
+    title: "Junior UI/UX Designer",
+    logo: "G",
+    logoType: "google",
+    salary: "$150/hr",
+    location: "California, CA",
+    tags: [
+      "Full time",
+      "Junior level",
+      "Distant",
+      "Project work",
+      "Flexible Schedule",
+    ],
+    bg: "green",
+  },
+
+  {
+    id: 3,
+    date: "29 Jan, 2023",
+    company: "Dribbble",
+    title: "Senior Motion Designer",
+    logo: "●",
+    logoType: "dribbble",
+    salary: "$260/hr",
+    location: "New York, NY",
+    tags: ["Part time", "Senior level", "Full Day", "Shift work"],
+    bg: "purple",
+  },
+
+  {
+    id: 4,
+    date: "11 Apr, 2023",
+    company: "Twitter",
+    title: "UX Designer",
+    logo: "♥",
+    logoType: "twitter",
+    salary: "$120/hr",
+    location: "California, CA",
+    tags: ["Full time", "Middle level", "Distant", "Project work"],
+    bg: "blue",
+  },
+
+  {
+    id: 5,
+    date: "2 Apr, 2023",
+    company: "Airbnb",
+    title: "Graphic Designer",
+    logo: "A",
+    logoType: "airbnb",
+    salary: "$300/hr",
+    location: "New York, NY",
+    tags: ["Part time", "Senior level"],
+    bg: "pink",
+  },
+
+  {
+    id: 6,
+    date: "18 Jan, 2023",
+    company: "Apple",
+    title: "Graphic Designer",
+    logo: "●",
+    logoType: "apple",
+    salary: "$140/hr",
+    location: "San Francisco, CA",
+    tags: ["Part time", "Distant"],
+    bg: "gray",
+  },
+];
+
+export default jobs;
