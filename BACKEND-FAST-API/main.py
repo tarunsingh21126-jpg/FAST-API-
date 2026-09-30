@@ -39,7 +39,7 @@ def get_users(name:str=None,price:int=0):
 
 #post request
 
-@app.post("/create-user")
+@app.post("/cr-user")
 def create_user(name:str,age:int):
     return {
         "name":name,
@@ -61,3 +61,38 @@ def create_user(user:User):
         "message":"DATA CREATED SUCESSFULLY pydantic",
         "data":user
     }
+
+# pydantic scheme structure
+
+# class User(BaseModel):
+#     name:str
+#     age:int
+#     address:Address
+
+# @app.post("/create_user")
+# def create_user(user:User):
+#     return {
+#         "meassage":"User Created sucessfully",
+#         "data":user
+#     }
+# nested models
+
+class Address(BaseModel):
+    city:str
+    pincode:int
+
+class User(BaseModel):
+    name:str
+    age:int
+    address:Address
+
+@app.post("/create_user")
+def create_user(user:User):
+    return {
+        "meassage":"User Created sucessfully",
+        "data":user
+    }
+
+#CRUD OPERATIONS 
+from routes.todos import router as todo_router
+app.include_router(todo_router)
