@@ -10,6 +10,7 @@ class Todo(BaseModel):
     id:int
     title:str
     completed:bool
+    percentage:int
 
 @router.post("/todos")
 def create_todos(todo:Todo):
@@ -27,3 +28,15 @@ def get_todo(todo_id:int):
         if todo.id == todo_id:
             return todo
     return {"ERROR:TODO NOT FOUND"}
+
+
+@router.delete("/delete/{todo_id}")
+def delete_todo(todo_id:int):
+    for todo in todos:
+        if todo.id == todo_id:
+            todos.remove(todo)
+            return {
+                "message":"TODO DELETED",
+                "data":todo
+            }
+    return {"error": "TODO NOT FOUND"}
