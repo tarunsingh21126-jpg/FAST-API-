@@ -29,12 +29,23 @@ def get_todo(todo_id:int):
             return todo
     return {"ERROR:TODO NOT FOUND"}
 
+@router.put("/todos/{todo_id}")
+def update_todo(todo_id:int,update_todo:Todo):
+    for index,todo in enumerate(todos):
+        if todo.id == todo_id:
+            todos[index]=update_todo
+            return {
+                "message":"TODO UPDATED",
+                "data":update_todo
+            }
+    return {"error": "TODO NOT FOUND"}
+
 
 @router.delete("/delete/{todo_id}")
 def delete_todo(todo_id:int):
-    for todo in todos:
+    for index,todo in enumerate(todos):
         if todo.id == todo_id:
-            todos.remove(todo)
+            todos.pop(index)
             return {
                 "message":"TODO DELETED",
                 "data":todo
