@@ -96,3 +96,7 @@ def create_user(user:User):
 #CRUD OPERATIONS 
 from routes.todos import router as todo_router
 app.include_router(todo_router)
+
+# QUERY - PATH - BODY STRUCTURE
+from routes.query import query
+app.include_router(query)
