@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,status
 from pydantic import BaseModel
 app = FastAPI()
 class User(BaseModel):
@@ -86,12 +86,12 @@ class User(BaseModel):
     age:int
     address:Address
 
-@app.post("/create_user")
-def create_user(user:User):
-    return {
-        "meassage":"User Created sucessfully",
-        "data":user
-    }
+# @app.post("/create_user")
+# def create_user(user:User):
+#     return {
+#         "meassage":"User Created sucessfully",
+#         "data":user
+#     }
 
 #CRUD OPERATIONS 
 from routes.todos import router as todo_router
