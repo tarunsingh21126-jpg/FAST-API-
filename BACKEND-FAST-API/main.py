@@ -1,5 +1,7 @@
-from fastapi import FastAPI,status
+from fastapi import FastAPI,Request
 from pydantic import BaseModel
+from fastapi.responses import  JSONResponse
+
 app = FastAPI()
 class User(BaseModel):
     name:str
@@ -98,5 +100,18 @@ from routes.todos import router as todo_router
 app.include_router(todo_router)
 
 # QUERY - PATH - BODY STRUCTURE
-from routes.query import query
+from routes.query import query, UserNOTFoundException
 app.include_router(query)
+
+@app.exception_handler(UserNOTFoundException)
+def user_not_found_handler(
+    request: Request,
+    exc: UserNOTFoundException
+):
+    return JSONResponse(
+        status_code=404,
+        content={
+            "status": "error",
+            "message": f"User {exc.name} not found"
+        }
+    )

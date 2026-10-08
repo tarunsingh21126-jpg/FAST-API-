@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
-from fastapi import APIRouter,status,HTTPException
+from fastapi import APIRouter,status,HTTPException,Request
+from fastapi.responses import  JSONResponse
 query = APIRouter()
 
 
@@ -74,3 +75,16 @@ def update_user(user_id: int, user: user, notify: bool = False):
         "error": "USER NOT FOUND"
     }
 
+#CUSTOM EXCEPTION HANDLING .\venv\Scripts\Activate.ps1      python -m uvicorn main:app --reload
+
+class UserNOTFoundException(Exception):
+    def __init__(self,name:str):
+        self.name = name
+
+@query.get("/cusers/{name}")
+def get_user(name:str):
+    if name!= "mohit":
+        raise UserNOTFoundException(name)
+    return {
+        "name":name
+    }
