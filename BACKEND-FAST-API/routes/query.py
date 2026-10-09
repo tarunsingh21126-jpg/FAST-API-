@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from fastapi import APIRouter,status,HTTPException,Request
+from fastapi import APIRouter,status,HTTPException,Request,Depends,Header
 from fastapi.responses import  JSONResponse
 query = APIRouter()
 
@@ -88,3 +88,48 @@ def get_user(name:str):
     return {
         "name":name
     }
+
+#DEPENDS INJECTION
+def common_logic():
+    return{
+        "message":"COMMON LOGIC EXECUTED"
+    }
+@query.get("/HOMEA")
+def home(data = Depends(common_logic)):
+    return data
+
+#resuable logic
+def get_currentuser():
+    return{
+        "user":"Mohit"
+    }
+
+@query.get("/profileuser")
+def profile(user = Depends(get_currentuser)):
+    return user
+
+@query.get("/dasuser")
+def dasuser(user = Depends(get_currentuser)):
+    return user
+
+
+#auth intro
+
+def varify_token(token:str =Header(None)):
+    if token != "mysecret-token":
+        raise HTTPException(
+            status_code = 401,
+            detail = "Unauthorized"
+        )
+    return {
+        "user":"AUTHORIZED USER"
+    }
+
+@query.get("/securedata")
+def securedata(user = Depends(varify_token)):
+    return{
+        "message":"secure data acessed",
+        "user":user
+
+    }
+
